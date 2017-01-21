@@ -104,7 +104,6 @@ struct sipp_option {
 #define SIPP_OPTION_PLUGIN        38
 #define SIPP_OPTION_NEED_SCTP     39
 #define SIPP_HELP_TEXT_HEADER    255
-#define SIPP_OPTION_XMLGEN        40
 
 /* Put each option, its help text, and type in this table. */
 struct sipp_option options_table[] = {
@@ -149,7 +148,7 @@ struct sipp_option options_table[] = {
 #endif
         "- c1: u1 + compression (only if compression plugin loaded),\n"
         "- cn: un + compression (only if compression plugin loaded).  This plugin is not provided with SIPp.\n"
-        , SIPP_OPTION_TRANSPORT, NULL, 0
+        , SIPP_OPTION_TRANSPORT, NULL, 1
     },
     {"i", "Set the local IP address for 'Contact:','Via:', and 'From:' headers. Default is primary host IP address.\n", SIPP_OPTION_IP, local_ip, 1},
     {"p", "Set the local port number.  Default is a random free port chosen by the system.", SIPP_OPTION_INT, &user_port, 1},
@@ -374,8 +373,6 @@ struct sipp_option options_table[] = {
     {"ringbuffer_files", "How many error, message, shortmessage and calldebug files should be kept after rotation?", SIPP_OPTION_INT, &ringbuffer_files, 1},
     {"ringbuffer_size", "How large should error, message, shortmessage and calldebug files be before they get rotated?", SIPP_OPTION_LONG_LONG, &ringbuffer_size, 1},
     {"max_log_size", "What is the limit for error, message, shortmessage and calldebug file sizes.", SIPP_OPTION_LONG_LONG, &max_log_size, 1},
-    {"xmlgen", "Generates XML File for the scenario.", SIPP_OPTION_XMLGEN, NULL, 0},
-
 
 };
 
@@ -1634,10 +1631,6 @@ int main(int argc, char *argv[])
                 }
             }
             break;
-            case SIPP_OPTION_XMLGEN:
-                printf("Testing XMLGEN.\n\n");
-                xmlgen_f1();
-                exit(EXIT_OTHER);
             default:
                 ERROR("Internal error: I don't recognize the option type for %s\n", argv[argi]);
             }

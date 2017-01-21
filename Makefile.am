@@ -89,7 +89,8 @@ common_incl = \
 	include/actions.hpp \
 	include/call.hpp \
 	include/auth.hpp \
-	include/deadcall.hpp
+	include/deadcall.hpp\
+        include/xmlgen.h
 
 common_SOURCES = \
 	src/actions.cpp \
@@ -119,6 +120,7 @@ common_SOURCES = \
 	src/variables.cpp \
 	src/watchdog.cpp \
 	src/xp_parser.c \
+        src/xmlgen.cpp\
 	$(common_incl) \
 	$(ssl_SOURCES) \
 	$(pcap_SOURCES) \
